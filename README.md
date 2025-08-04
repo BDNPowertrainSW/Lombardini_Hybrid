@@ -12,10 +12,9 @@ Organize your repository for clarity and scalability:
 /project-root
 ├── models/    # Simulink models (.slx)
 ├── scripts/   # MATLAB scripts and functions (.m)
-├── fmu/       # Exported Functional Mock-up Units (FMUs)
-├── test/      # Test harnesses and regression scripts
-├── data/      # Input/output datasets
-├── doc/       # Design specs and documentation
+├── test/      # Test harnesses and regression scripts // To be created
+├── data/      # Input/output datasets // To be created
+├── doc/       # Design specs and documentation // to be created
 └── README.md
 ```
 
@@ -23,10 +22,10 @@ Organize your repository for clarity and scalability:
 
 ## 🔗 Version Control System (Git)
 
-- Use **Git** for version control.
+- Use SmartGit client for version control.
 - Commit with **descriptive messages**.
 - Submit non-trivial changes via **Pull Requests (PRs)** or **Merge Requests (MRs)**.
-- Host on platforms like **GitHub**, **GitLab**, or **Bitbucket**.
+- Host on platforms like **GitHub**.
 
 ---
 
