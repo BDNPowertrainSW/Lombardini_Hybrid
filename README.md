@@ -54,13 +54,13 @@ Set up `.gitattributes` for proper diff/merge:
 Configure Git to use MATLAB's compare tool:
 
 ```bash
-git config --global diff.matlab.command "matlab -batch \"slcompare('%a','%b')\""
+git config --global diff.matlab.command "matlab -batch \"slcompare('%a','%b')\"" //Doesn't work yet
 ```
 
 Manual model comparison:
 
 ```matlab
-slcompare('modelA.slx', 'modelB.slx')
+slcompare('modelA.slx', 'modelB.slx') //Doesn't work yet
 ```
 
 ---
@@ -92,10 +92,7 @@ Integrate tests into CI pipelines (GitHub Actions, GitLab CI/CD) using MATLAB ba
 ## 📦 FMU File Handling
 
 - FMUs are binary and not diffable.
-- Preferably commit with an ID:
-    ```bash
-    git lfs track "*.fmu"
-    ```
+- Currently the FMU files are too large for GitHub to handle, so they won't be uploaded.
 - Prefer re-generating FMUs from versioned model sources during CI or release.
 
 ---
@@ -125,32 +122,10 @@ Integrate tests into CI pipelines (GitHub Actions, GitLab CI/CD) using MATLAB ba
 - Maintain a clear `README.md` for each major directory.
 - Track model and FMU version history in `CHANGELOG.md`.
 
----
-
-## 🔍 Simulink Model Diff & Merge Tools
-
-- Use MATLAB's visual tools:
-    ```matlab
-    slcompare('fileA.slx', 'fileB.slx') % Model comparisons
-    ```
-- MATLAB provides three-way merge tools for `.slx` conflicts.
-
----
-
-## 🧩 MATLAB Project Integration (Optional)
-
-- Manage environment with MATLAB Projects:
-    ```matlab
-    slproject.createProjectFromModel('YourModel')
-    ```
-
----
-
 ## 🤝 Collaboration Notes
 
 - **Avoid pushing to main directly.**
 - Use code reviews for model health, readability, and maintainability.
-- Write helpful, minimal, and specific commit messages  
-    _e.g._, `"Added torque map lookup table to EngineController"`
+- Write helpful, minimal, and specific commit messages.
 
 ---
