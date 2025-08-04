@@ -24,7 +24,6 @@ double LambdaPID_Compute(LambdaPIDController* pid, double lambda_setpoint, doubl
 }
 
 
-// Update function for Lambda PID control
 // This function initializes the PID controller if not already done and computes the PID output
 double LambdaPID_Update(double setpoint, double measured, double kp, double ki, double kd, double dt) {
     static LambdaPIDController pid;
