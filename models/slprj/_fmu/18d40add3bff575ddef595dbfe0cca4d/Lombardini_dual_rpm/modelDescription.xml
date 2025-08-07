@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<fmiModelDescription fmiVersion="2.0" modelName="Lombardini_dual_rpm" numberOfEventIndicators="0" guid="{942545a4-0cda-4c85-96c1-29c0254aff96}" generationTool="AVL CRUISE™ M 2025 R1 (build 381 / )" description="CRUISE M model" generationDateAndTime="2025-08-05T12:31:38.290897Z">
+  <CoSimulation modelIdentifier="Lombardini_dual_rpm" canHandleVariableCommunicationStepSize="true" canBeInstantiatedOnlyOncePerProcess="true" canGetAndSetFMUstate="true" canSerializeFMUstate="true"/>
+  <UnitDefinitions>
+    <Unit name="mass~mg">
+      <BaseUnit kg="1" m="0" s="0" A="0" K="0" mol="0" cd="0" rad="0" factor="0.0000010000000000" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="ang_vel~rpm">
+      <BaseUnit kg="0" m="0" s="-1" A="0" K="0" mol="0" cd="0" rad="1" factor="0.1047197551196598" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="dimensionless~no">
+      <BaseUnit kg="0" m="0" s="0" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0000000000000000" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="pressure~bar">
+      <BaseUnit kg="1" m="-1" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="100000.0000000000000000" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="temperature~degC">
+      <BaseUnit kg="0" m="0" s="0" A="0" K="1" mol="0" cd="0" rad="0" factor="1.0000000000000000" offset="273.1499999999999773"/>
+    </Unit>
+    <Unit name="spec_mass_flow~g_kWh">
+      <BaseUnit kg="0" m="-2" s="2" A="0" K="0" mol="0" cd="0" rad="0" factor="0.0000000002777778" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="moment~Nm">
+      <BaseUnit kg="1" m="2" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0000000000000000" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="power~kW">
+      <BaseUnit kg="1" m="2" s="-3" A="0" K="0" mol="0" cd="0" rad="0" factor="1000.0000000000000000" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="massflow~kg_h">
+      <BaseUnit kg="1" m="0" s="-1" A="0" K="0" mol="0" cd="0" rad="0" factor="0.0002777777777778" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="temperature~K">
+      <BaseUnit kg="0" m="0" s="0" A="0" K="1" mol="0" cd="0" rad="0" factor="1.0000000000000000" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="pressure~Pa">
+      <BaseUnit kg="1" m="-1" s="-2" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0000000000000000" offset="0.0000000000000000"/>
+    </Unit>
+    <Unit name="power~W">
+      <BaseUnit kg="1" m="2" s="-3" A="0" K="0" mol="0" cd="0" rad="0" factor="1.0000000000000000" offset="0.0000000000000000"/>
+    </Unit>
+  </UnitDefinitions>
+  <TypeDefinitions>
+    <SimpleType name="Status Type">
+      <Enumeration>
+        <Item name="OK" value="0"/>
+        <Item name="Warning" value="1"/>
+        <Item name="Error" value="2"/>
+      </Enumeration>
+    </SimpleType>
+  </TypeDefinitions>
+  <DefaultExperiment startTime="0.0" stopTime="1000.0" stepSize="0.001"/>
+  <VendorAnnotations>
+    <Tool name="AVL">
+      <Annotation name="product" value="CRUISEM"/>
+    </Tool>
+    <Tool name="AVL_SDT">
+      <AVLAnnotations>
+        <NonScalarVariables/>
+        <RegularMaps/>
+      </AVLAnnotations>
+    </Tool>
+  </VendorAnnotations>
+  <ModelVariables>
+    <ScalarVariable name="Direct Injector - Mass per cycle" valueReference="26" variability="discrete" causality="input" description="">
+      <Real min="0.0" max="50.0" start="2.0" unit="mass~mg"/>
+    </ScalarVariable>
+    <ScalarVariable name="Hydrogen_injector_Cyl1 - Mass per cycle" valueReference="27" variability="discrete" causality="input" description="">
+      <Real min="0.0" max="50.0" start="2.0" unit="mass~mg"/>
+    </ScalarVariable>
+    <ScalarVariable name="Rpm_actuator" valueReference="28" variability="discrete" causality="input" description="">
+      <Real min="500.0" max="5000.0" start="2500.0" unit="ang_vel~rpm"/>
+    </ScalarVariable>
+    <ScalarVariable name="AFR" valueReference="10" variability="discrete" causality="output" description="">
+      <Real min="1.0" max="1000.0" unit="dimensionless~no"/>
+    </ScalarVariable>
+    <ScalarVariable name="IMEP" valueReference="11" variability="discrete" causality="output" description="">
+      <Real min="0.0" max="200.0" unit="pressure~bar"/>
+    </ScalarVariable>
+    <ScalarVariable name="EGT" valueReference="12" variability="discrete" causality="output" description="">
+      <Real min="0.0" max="1200.0" unit="temperature~degC"/>
+    </ScalarVariable>
+    <ScalarVariable name="BSFC" valueReference="13" variability="discrete" causality="output" description="">
+      <Real min="0.0" max="1e+111" unit="spec_mass_flow~g_kWh"/>
+    </ScalarVariable>
+    <ScalarVariable name="Effective torque" valueReference="14" variability="discrete" causality="output" description="">
+      <Real min="0.0" max="1000.0" unit="moment~Nm"/>
+    </ScalarVariable>
+    <ScalarVariable name="PWR" valueReference="15" variability="discrete" causality="output" description="">
+      <Real min="0.0" max="1000.0" unit="power~kW"/>
+    </ScalarVariable>
+    <ScalarVariable name="RPM" valueReference="16" variability="discrete" causality="output" description="">
+      <Real min="0.0" max="12000.0" unit="ang_vel~rpm"/>
+    </ScalarVariable>
+    <ScalarVariable name="Air Cleaner - Cycle averaged mass flow US" valueReference="17" variability="discrete" causality="output" description="">
+      <Real min="-1e+111" max="1e+111" unit="massflow~kg_h"/>
+    </ScalarVariable>
+    <ScalarVariable name="Intake Manifold - Temperature" valueReference="18" variability="discrete" causality="output" description="">
+      <Real min="-1e+111" max="1e+111" unit="temperature~K"/>
+    </ScalarVariable>
+    <ScalarVariable name="Intake Manifold - Pressure" valueReference="19" variability="discrete" causality="output" description="">
+      <Real min="-1e+111" max="1e+111" unit="pressure~Pa"/>
+    </ScalarVariable>
+    <ScalarVariable name="Cylinder Block - Fuel energy" valueReference="20" variability="discrete" causality="output" description="">
+      <Real min="-1e+111" max="1e+111" unit="power~W"/>
+    </ScalarVariable>
+    <ScalarVariable name="Cylinder Block - Indicated efficiency" valueReference="21" variability="discrete" causality="output" description="">
+      <Real min="-1e+111" max="1e+111" unit="dimensionless~no"/>
+    </ScalarVariable>
+    <ScalarVariable name="Combustion Chamber - IMEP gas exchange" valueReference="22" variability="discrete" causality="output" description="">
+      <Real min="-1e+111" max="1e+111" unit="pressure~Pa"/>
+    </ScalarVariable>
+    <ScalarVariable name="Direct Injector - Mass per cycle 1" valueReference="23" variability="discrete" causality="output" description="">
+      <Real min="-1e+111" max="1e+111" unit="mass~mg"/>
+    </ScalarVariable>
+    <ScalarVariable name="Hydrogen_injector_Cyl1 - Mass per cycle 1" valueReference="24" variability="discrete" causality="output" description="">
+      <Real min="-1e+111" max="1e+111" unit="mass~mg"/>
+    </ScalarVariable>
+    <ScalarVariable name="Cylinder Block - Overall efficiency" valueReference="25" variability="discrete" causality="output" description="">
+      <Real min="-1e+111" max="1e+111" unit="dimensionless~no"/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Temporary folder" description="Temporary folder used by solver. Folder must exist. Default folder will be used if empty string is provided." valueReference="2147483642" causality="parameter" variability="fixed">
+      <String start=""/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Results folder" description="Folder where model results will be saved. Folder must exist. Default folder will be used if empty string is provided." valueReference="2147483641" causality="parameter" variability="fixed">
+      <String start=""/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Disable outputs" description="If set to true, all outputs will be disabled (result files, log files)." valueReference="536870907" causality="parameter" variability="fixed">
+      <Boolean start="false"/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Real-time factor" description="Ratio of time step execution time to time step" valueReference="536870905" causality="output" variability="discrete">
+      <Real min="0" unit="dimensionless~no"/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Days until license expiration" description="Days until license expiration" valueReference="536870908" causality="output" variability="discrete">
+      <Integer/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Days until license expiration (double)" description="Days until license expiration as fmi2Real" valueReference="536870909" causality="output" variability="discrete">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Kernel version (double)" description="Kernel version as fmi2Real" valueReference="536870910" causality="output" variability="discrete">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Model modification date (double)" description="Model modification date as fmi2Real" valueReference="536870911" causality="output" variability="discrete">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Simulation start date (double)" description="Simulation start date as fmi2Real" valueReference="536870912" causality="output" variability="discrete">
+      <Real/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Build hash" description="Solver build hash" valueReference="536870913" causality="output" variability="discrete">
+      <String/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Kernel version" description="Kernel version" valueReference="536870914" causality="output" variability="discrete">
+      <String/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Model modification date" description="Model modification date" valueReference="536870915" causality="output" variability="discrete">
+      <String/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Simulation start date" description="Simulation start date" valueReference="536870916" causality="output" variability="discrete">
+      <String/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Warning count" description="Number of warnings occurred during simulation" valueReference="536870917" causality="output" variability="discrete">
+      <Integer min="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Warning count (double)" description="Warning count as fmi2Real" valueReference="536870918" causality="output" variability="discrete">
+      <Real min="0"/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Simulation status" description="Simulation status (0 = no warnings/errors, 1 = warnings occurred, 2 = error occured)" valueReference="536870919" causality="output" variability="discrete">
+      <Enumeration min="0" max="2" declaredType="Status Type"/>
+    </ScalarVariable>
+    <ScalarVariable name="Solver.Simulation status (double)" description="Simulation status as fmi2Real" valueReference="536870920" causality="output" variability="discrete">
+      <Real min="0" max="2"/>
+    </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="4"/>
+      <Unknown index="5"/>
+      <Unknown index="6"/>
+      <Unknown index="7"/>
+      <Unknown index="8"/>
+      <Unknown index="9"/>
+      <Unknown index="10"/>
+      <Unknown index="11"/>
+      <Unknown index="12"/>
+      <Unknown index="13"/>
+      <Unknown index="14"/>
+      <Unknown index="15"/>
+      <Unknown index="16"/>
+      <Unknown index="17"/>
+      <Unknown index="18"/>
+      <Unknown index="19"/>
+      <Unknown index="23"/>
+      <Unknown index="24"/>
+      <Unknown index="25"/>
+      <Unknown index="26"/>
+      <Unknown index="27"/>
+      <Unknown index="28"/>
+      <Unknown index="29"/>
+      <Unknown index="30"/>
+      <Unknown index="31"/>
+      <Unknown index="32"/>
+      <Unknown index="33"/>
+      <Unknown index="34"/>
+      <Unknown index="35"/>
+      <Unknown index="36"/>
+    </Outputs>
+    <InitialUnknowns>
+      <Unknown index="4"/>
+      <Unknown index="5"/>
+      <Unknown index="6"/>
+      <Unknown index="7"/>
+      <Unknown index="8"/>
+      <Unknown index="9"/>
+      <Unknown index="10"/>
+      <Unknown index="11"/>
+      <Unknown index="12"/>
+      <Unknown index="13"/>
+      <Unknown index="14"/>
+      <Unknown index="15"/>
+      <Unknown index="16"/>
+      <Unknown index="17"/>
+      <Unknown index="18"/>
+      <Unknown index="19"/>
+      <Unknown index="23"/>
+      <Unknown index="24"/>
+      <Unknown index="25"/>
+      <Unknown index="26"/>
+      <Unknown index="27"/>
+      <Unknown index="28"/>
+      <Unknown index="29"/>
+      <Unknown index="30"/>
+      <Unknown index="31"/>
+      <Unknown index="32"/>
+      <Unknown index="33"/>
+      <Unknown index="34"/>
+      <Unknown index="35"/>
+      <Unknown index="36"/>
+    </InitialUnknowns>
+  </ModelStructure>
+</fmiModelDescription>

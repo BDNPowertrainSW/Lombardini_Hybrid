@@ -13,6 +13,8 @@ void get_rolling_resistance(double speed, double mass, double* rolling_res);
 
 void get_load(double m_engine, double rpm, double* load);
 
+void calc_rpm(double speed, double rolling_radius, double* rpm, double diff_ratio, double gear_ratio);
+
 #ifdef __cplusplus
 }
 #endif

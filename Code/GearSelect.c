@@ -60,10 +60,10 @@ void get_highest_gear_for_tractive_force(double speed, double requested_force, d
 
 void get_air_res(double speed, double* air_res) {
     double air_density = 1.225; // kg/m^3 at sea level and 15 degrees Celsius
-    double frontal_area = 1.5; // m^2, typical for a car
+    double frontal_area = 0.12; // m^2, typical for a car
     double drag_coefficient = 0.3; // Typical value for a car
 
-    double air_speed = speed / 3.6; // Convert speed from km/h to m/s
+    double air_speed = speed; // Speed in m/s
 
     *air_res = 0.5 * air_density * frontal_area * drag_coefficient * (air_speed * air_speed);
 }
@@ -102,7 +102,6 @@ void get_load(double m_engine, double rpm, double* load) {
         {11.07, 12.96, 15.85, 22.1, 22.01, 18.37, 15.51, 14.8, 13.36},
         {15, 17.13, 20.31, 27.35, 26.2, 24.45, 21.26, 20.64, 19.64}
     };
-
     // Find rpm indices for interpolation
     int rpm_idx = 0;
     for (int i = 0; i < rpm_count - 1; ++i) {
@@ -116,19 +115,31 @@ void get_load(double m_engine, double rpm, double* load) {
     }
 
     // For each load, interpolate torque at given rpm
-    double found_load = 0.0;
-    for (int l = load_count - 1; l >= 0; --l) {
+    double result_load = load_points[load_count - 1]; // Default to max load
+    for (int l = 0; l < load_count - 1; ++l) {
         double t1 = torque_map[l][rpm_idx];
         double t2 = torque_map[l][rpm_idx + 1];
         double rpm1 = rpm_points[rpm_idx];
         double rpm2 = rpm_points[rpm_idx + 1];
-        double torque_at_rpm = t1 + (t2 - t1) * (rpm - rpm1) / (rpm2 - rpm1);
+        double torque_low = t1 + (t2 - t1) * (rpm - rpm1) / (rpm2 - rpm1);
 
-        if (torque_at_rpm >= m_engine) {
-            found_load = load_points[l];
+        t1 = torque_map[l + 1][rpm_idx];
+        t2 = torque_map[l + 1][rpm_idx + 1];
+        double torque_high = t1 + (t2 - t1) * (rpm - rpm1) / (rpm2 - rpm1);
+
+        if (m_engine >= torque_low && m_engine <= torque_high) {
+            double load1 = load_points[l];
+            double load2 = load_points[l + 1];
+            // Linear interpolation for load
+            result_load = load1 + (load2 - load1) * (m_engine - torque_low) / (torque_high - torque_low);
             break;
         }
     }
-    *load = found_load;
+    *load = result_load * 100;
+}
 
+
+void calc_rpm(double speed, double rolling_radius, double* rpm, double diff_ratio, double gear_ratio) {
+    double wheel_rpm = speed / (2 * 3.141592653589793 * rolling_radius) * 60; // Convert speed from m/s to wheel RPM
+    *rpm = wheel_rpm * diff_ratio * gear_ratio; // Calculate engine RPM
 }
