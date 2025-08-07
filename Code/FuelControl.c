@@ -175,67 +175,6 @@ void energy_monitor(double inj_m_d, double inj_m_h2, double lower_heating_value_
     *energy_combined = *energy_diesel + *energy_h2; // Total energy in J
 }
 
-/*
-void FuelControl_Run(
-    double energy_fraction,
-    double lower_heating_value_h2,
-    double lower_heating_value_diesel,
-    double bore,
-    double stroke,
-    double rpm,
-    double volumetric_efficiency,
-    double compression_ratio,
-    double H2_intake,
-    double H2_base_density,
-    double h2_iat_correction_factor_scaling,
-    double map,
-    double iat,
-    double lambda_reference,
-    double lambda_overwrite,
-    double lambda_target_diesel,
-    double lambda_target_h2,
-    double flex_lambda_scaling,
-    double lambda_pid_enable,
-    double pid_kp,
-    double pid_ki,
-    double pid_kd,
-    double soi_base,
-    double dead_time,
-    double diesel_stoich_ratio,
-    double h2_stoich_ratio,
-    double diesel_injector_flow_rate,
-    double* diesel_injection_duration,
-    double* diesel_injected,
-    double* h2_injected,
-    double* soi
-) {
-    double mass_fraction = 0.0;
-    double air_mass = 0.0;
-    double flex_lambda = 0.0; // Initialize flex lambda
-    double h2_injected = 0.0;
-    double diesel_injected = 0.0;
 
-    // Step 1: Calculate mass fraction of hydrogen
-    mass_fraction_calc(energy_fraction, lower_heating_value_h2, lower_heating_value_diesel, &mass_fraction);
 
-    // Step 2: Calculate air mass entering the engine
-    airMassCalc(bore, stroke, rpm, volumetric_efficiency, compression_ratio, H2_intake, H2_base_density, h2_iat_correction_factor_scaling, map, iat, &air_mass);
 
-    // Step 3: Lambda control logic
-    LambdaControl(lambda_reference, mass_fraction, lambda_overwrite, lambda_target_diesel, lambda_target_h2, flex_lambda_scaling, lambda_pid_enable, pid_kp, pid_ki, pid_kd, &flex_lambda);
-
-    // Step 4: Calculate injection amounts for diesel and hydrogen
-    Injection_amounts(mass_fraction, air_mass, h2_stoich_ratio, diesel_stoich_ratio, flex_lambda, &h2_injected, &diesel_injected);
-
-    // Step 5: Calculate diesel injection duration (assuming duration = amount / flow_rate, flow_rate is user-defined or calibrated)
-    // For demonstration, assume a constant diesel injector flow rate (e.g., 0.1 mg/ms)
-    if (diesel_injector_flow_rate > 0.0) {
-        *diesel_injection_duration = *diesel_injected / diesel_injector_flow_rate;
-    } else {
-        *diesel_injection_duration = 0.0;
-    }
-
-    // Step 6: Calculate start of injection timing
-    start_of_injection(soi_base, dead_time, iat, soi);
-}
-    */

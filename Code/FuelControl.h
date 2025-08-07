@@ -116,10 +116,15 @@ void mass_fraction_calc(double energy_fraction, double lower_heating_value_h2, d
 
 void start_of_injection(double soi_base, double dead_time, double iat,  double* soi);
 
+void random(double* input);
+
 void s_fuel_trim_calc(double mass_fraction, double h2_stoich_ratio, double diesel_stoich_ratio, double lambda_reference, double lambda, double* s_fuel_trim_diesel, double* s_fuel_trim_h2);
 
-
 void energy_monitor(double inj_m_d, double inj_m_h2, double lower_heating_value_h2, double lower_heating_value_diesel, double* energy_diesel, double* energy_h2, double* energy_combined);
+
+void get_highest_gear_for_tractive_force(double speed, double requested_force, double* gear_res);
+
+
 
 /**
  * @brief 
