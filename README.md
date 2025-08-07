@@ -10,8 +10,9 @@ Organize your repository for clarity and scalability:
 
 ```
 /project-root
+├── CAN/       # CAN bus related files and scripts
+├── Code/      # C code used in the Simulink models
 ├── models/    # Simulink models (.slx)
-├── scripts/   # MATLAB scripts and functions (.m)
 ├── test/      # Test harnesses and regression scripts // To be created
 ├── data/      # Input/output datasets // To be created
 ├── doc/       # Design specs and documentation // to be created
@@ -25,13 +26,12 @@ Organize your repository for clarity and scalability:
 - Use SmartGit client for version control.
 - Commit with **descriptive messages**.
 - Submit non-trivial changes via **Pull Requests (PRs)** or **Merge Requests (MRs)**.
-- Host on platforms like **GitHub**.
 
 ---
 
 ## 🛠️ Simulink Model Best Practices
 
-- Use `.slx` format (compressed XML).
+- Use `.slx` format.
 - Save models with **local settings**:  
     `File > Model Properties > Model Settings > Save > "Always save model with local settings"`
 - **Do not commit**:
@@ -65,7 +65,7 @@ slcompare('modelA.slx', 'modelB.slx') //Doesn't work yet
 
 ---
 
-## ✅ Testing and Validation
+## ✅ TODO: Testing and Validation
 
 - **Simulink Test**: Define and run test cases.
 - **Simulink Coverage**: Track test coverage.
@@ -129,3 +129,4 @@ Integrate tests into CI pipelines (GitHub Actions, GitLab CI/CD) using MATLAB ba
 - Write helpful, minimal, and specific commit messages.
 
 ---
+
